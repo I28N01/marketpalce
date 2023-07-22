@@ -1,0 +1,74 @@
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background-color: #F1F1F1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+}
+
+
+// =================== main ====================//
+.main {
+
+    &__container {
+        max-width: 1178px;
+        margin: 0 auto;
+        padding: 0px 10px 79px;
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        font-size: 32px;
+        line-height: 70px;
+        font-weight: 500;
+        color: #000000;
+
+    }
+
+    &__content {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+
+}
+
+
+
+
+
+
+@media screen and (max-width: 590px) {
+    .main {
+        &__container {
+            padding: 85px 10px 84px;
+        }
+
+
+        &__content {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            position: fixed;
+            right: 0;
+            left: 0;
+            top: 134px;
+            bottom: 84px;
+        }
+
+        &__title {
+            font-size: 18px;
+            line-height: 1;
+
+        }
+
+    }
+}

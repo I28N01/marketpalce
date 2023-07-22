@@ -1,0 +1,31 @@
+.menu {
+
+    &__logo_link {
+        width: 54;
+        height: 50px;
+    }
+
+    &__logo_img {
+        width: 54px;
+        height: auto;
+    }
+
+    &__form {
+        margin-left: 60px;
+        max-width: 1044px;
+        width: 100%;
+    }
+}
+
+.main {
+    &__menu {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 11px 0;
+        width: 100%;
+        padding: 31px 10px 64px;
+    }
+
+}

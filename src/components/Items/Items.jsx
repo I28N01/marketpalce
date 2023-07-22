@@ -7,7 +7,7 @@ function Items() {
             <div className={styles.cards__card}>
                 <div className={styles.card__image}>
                     <a href="#" target="_blank">
-                        <img src="#" alt="picture" />
+                        <img src="/assets/img/pic5.jpg" alt="picture" />
                     </a>
                 </div>
                 <div className={styles.card__content}>

@@ -5,10 +5,10 @@ import Items from "../../components/Items/Items";
 
 function Main() {
     return (
-        <div className="wrapper">
-            <div className="container">
+        <div className={styles.wrapper}>
+            <div className={styles.container}>
                 <Header />
-                <main class="main">
+                <main className={styles.main}>
                     <Search />
                     <div className={styles.main__container}>
                         <h2 className={styles.main__h2}>Объявления</h2>
