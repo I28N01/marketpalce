@@ -1,7 +1,5 @@
 import styles from "./Profile.module.scss";
 import Header from "../../components/Header/Header"
-import Button from '../../components/UI/Button/Button';
-import { Link } from 'react-router-dom';
 import UserProfile from "../../components/UserProfile/UserProfile";
 import Items from "../../components/Items/Items";
 import Menu from "../../components/UI/Menu/Menu";
@@ -22,7 +20,7 @@ function Profile() {
                         <div className={styles.main__content}>
                             <div className={styles.content__cards}>
                                 <div className={styles.cards__item}>
-                                    <Items />
+                                    {/* <Items data={adsData} searchTerm={searchTerm} /> */}
                                 </div>
                             </div>
                         </div >
