@@ -12,12 +12,12 @@ function Items({ data, searchTerm }) {
                 <div key={index} className={styles.cards__item}>
                     <div className={styles.cards__card}>
                         <div className={styles.card__image}>
-                            <a href={`ads/${ad.id}`} target="_blank">
-                                <img src="" alt="picture" />
+                            <a href={`../ads/${ad.id}`}>
+                                <img src={ad.images && ad.images.length > 0 ? `http://127.0.0.1:8090/${ad.images[0].url}` : '../assets/img/no-image.jpg'} alt="Изображение объявления" />
                             </a>
                         </div>
                         <div className={styles.card__content}>
-                            <a href={ad.id} target="_blank">
+                            <a href={`../ads/${ad.id}`}>
                                 <h3 className={styles.card__title}>{ad.title}</h3>
                             </a>
                             <p className={styles.card__price}>{ad.price}</p>

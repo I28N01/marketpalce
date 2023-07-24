@@ -71,6 +71,10 @@
         font-weight: 500;
         line-height: 33px;
         margin-bottom: 10px;
+
+        &::after {
+            content: " $";
+        }
     }
 
     &__place,

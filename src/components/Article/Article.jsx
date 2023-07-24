@@ -2,6 +2,7 @@ import styles from "./Article.module.scss";
 import React, { useEffect, useState } from 'react';
 import TimeFormatter from "../TimeFormatter/TimeFormatter";
 import DateFormatter from "../DateFormatter/DateFormatter";
+import PhoneNumber from "../UI/PhoneNumber/PhoneNumber";
 import { getAdData } from '../Redux/Actions/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -10,8 +11,13 @@ function Article() {
     const location = useLocation();
     const currentPath = location.pathname.split('/');
     const id = currentPath.pop() || currentPath.pop();
+
+
+    /** Redux */
     const dispatch = useDispatch();
     const { adData, error } = useSelector((state) => state.ad);
+
+    const photoURL = 'http://127.0.0.1:8090/';
 
     useEffect(() => {
         dispatch(getAdData(id));
@@ -28,21 +34,24 @@ function Article() {
     }
 
 
+
+
     return (
         <div className={styles.main__artic}>
             <div className={styles.artic__content}>
                 <div className={styles.article__left}>
                     <div className={styles.article__fill_img}>
                         <div className={styles.article__img}>
-                            <img src="" alt="" />
+                            <img src={adData.images && adData.images.length > 0 ? `${photoURL}${adData.images[0].url}` : '../assets/img/no-image.jpg'} alt="Изображение объявления" />
                         </div>
                         <div className={styles.article__img_bar}>
-                            <div className={styles.article__img_bar_div}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.article__img_bar_div}>
-                                <img src="" alt="" />
-                            </div>
+                            {adData.images?.map((i) => (
+                                <div className={styles.article__img_bar_div}>
+                                    <a href={`${photoURL}${i.url}`} target="_blank">
+                                        <img src={`${photoURL}${i.url}`} alt="picture" />
+                                    </a>
+                                </div>
+                            ))}
                         </div>
                         <div className={styles.article__img_bar_mob}>
                             <div className={styles.img_bar_mob__circle}></div>
@@ -62,16 +71,16 @@ function Article() {
                             <a className={styles.article__link} href="" target="_blank" rel="">23 отзыва</a>
                         </div>
                         <p className={styles.article__price}>{adData.price}</p>
-                        <button className={styles.article__btn} >Показать&nbsp;телефон
-                            <span>{adData.user.phone}</span>
-                        </button>
+                        <PhoneNumber phoneNumber={adData.user.phone} />
                         <div className={styles.article__author}>
                             <div className={styles.author__img}>
-                                <img src={`http://127.0.0.1:8090/${adData.user.avatar}`} alt="avatar" />
+                                <img src={`${photoURL}${adData.user.avatar}`} alt="avatar" />
                             </div>
                             <div className={styles.author__cont}>
-                                <p className={styles.author__name}>{adData.user.name}</p>
-                                <p className={styles.author__about}>Продает товары с <DateFormatter dateStr={adData.created_on} /></p>
+                                <a href={`/seller/${adData.user_id}`}>
+                                    <p className={styles.author__name}>{adData.user.name}</p>
+                                    <p className={styles.author__about}>Продает товары с <DateFormatter dateStr={adData.created_on} /></p>
+                                </a>
                             </div>
                         </div>
                     </div>

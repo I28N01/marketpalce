@@ -4,6 +4,7 @@ import Main from '../pages/Main/Main';
 import Login from '../pages/Login/Login';
 import Registration from '../pages/Registration/Registration';
 import Profile from '../pages/Profile/Profile';
+import Seller from '../pages/Seller/Seller';
 import Advert from '../pages/Advert/Advert';
 
 
@@ -16,6 +17,7 @@ function Routing() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/profile" element={<Profile />} />
             <Route path='/ads/:id' element={<Advert />} />
+            <Route path='/seller/:id' element={<Seller />} />
         </Routes>
     );
 }

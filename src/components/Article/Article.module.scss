@@ -45,8 +45,8 @@
     }
 
     &__img {
-        width: 480px;
-        height: 480px;
+        // width: 480px;
+        // height: 480px;
         background-color: #F0F0F0;
         margin: 0 5px;
 
@@ -135,24 +135,6 @@
         // }
     }
 
-    &__btn {
-        background-color: #009EE4;
-        border-radius: 6px;
-        border: 1px solid #009EE4;
-        width: 214px;
-        height: 62px;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 22px;
-        color: #FFFFFF;
-        font-family: 'Roboto', sans-serif;
-
-        & span {
-            display: block;
-            font-size: 14px;
-            font-weight: 400;
-        }
-    }
 
     &__author {
         margin-top: 34px;
@@ -341,18 +323,7 @@
             margin-bottom: 20px;
         }
 
-        &__btn {
-            width: 100%;
-            height: 57px;
-            font-size: 14px;
-            line-height: 20px;
-            color: #FFFFFF;
 
-            & span {
-                font-size: 12px;
-
-            }
-        }
 
         &__author {
             margin-top: 30px;
