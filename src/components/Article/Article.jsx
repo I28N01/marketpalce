@@ -1,7 +1,7 @@
 import styles from "./Article.module.scss";
 import React, { useEffect, useState } from 'react';
-import TimeFormatter from "../TimeFormatter/TimeFormatter";
-import DateFormatter from "../DateFormatter/DateFormatter";
+import TimeFormatter from "../UI/TimeFormatter/TimeFormatter";
+import DateFormatter from "../UI/DateFormatter/DateFormatter";
 import PhoneNumber from "../UI/PhoneNumber/PhoneNumber";
 import { getAdData } from '../Redux/Actions/Actions';
 import { useDispatch, useSelector } from 'react-redux';

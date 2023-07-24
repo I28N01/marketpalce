@@ -1,5 +1,5 @@
 import styles from "./Items.module.scss";
-import TimeFormatter from '../TimeFormatter/TimeFormatter';
+import TimeFormatter from '../UI/TimeFormatter/TimeFormatter';
 
 function Items({ data, searchTerm }) {
     const filteredData = data.filter((item) =>

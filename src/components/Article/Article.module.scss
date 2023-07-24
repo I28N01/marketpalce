@@ -130,9 +130,9 @@
         font-weight: 700;
         margin-bottom: 20px;
 
-        // &::after {
-        //     content: '2';
-        // }
+        &::after {
+            content: ' $';
+        }
     }
 
 

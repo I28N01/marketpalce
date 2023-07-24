@@ -1,11 +1,10 @@
 import styles from "./SellerProfile.module.scss";
-import TimeFormatter from "../TimeFormatter/TimeFormatter";
-import DateFormatter from "../DateFormatter/DateFormatter";
+import DateFormatter from "../UI/DateFormatter/DateFormatter";
 import { getAdData } from '../Redux/Actions/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-
+import PhoneNumber from "../UI/PhoneNumber/PhoneNumber";
 
 function SellerProfile() {
     const location = useLocation();
@@ -54,9 +53,7 @@ function SellerProfile() {
                                 </div>
                             </div>
 
-                            <button className={styles.seller__btn}>Показать&nbsp;телефон
-                                <span>{adData.user.phone}</span>
-                            </button>
+                            <PhoneNumber phoneNumber={adData.user.phone} />
                         </div>
                     </div>
                 </div>
