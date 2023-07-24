@@ -12,7 +12,7 @@ function Items({ data, searchTerm }) {
                 <div key={index} className={styles.cards__item}>
                     <div className={styles.cards__card}>
                         <div className={styles.card__image}>
-                            <a href="#" target="_blank">
+                            <a href={`ads/${ad.id}`} target="_blank">
                                 <img src="" alt="picture" />
                             </a>
                         </div>

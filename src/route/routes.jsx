@@ -15,7 +15,7 @@ function Routing() {
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/Advert" element={<Advert />} />
+            <Route path='/ads/:id' element={<Advert />} />
         </Routes>
     );
 }
