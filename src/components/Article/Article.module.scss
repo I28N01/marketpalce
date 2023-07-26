@@ -180,6 +180,31 @@
     }
 }
 
+.modal__block {
+    position: fixed;
+    width: 800px;
+    height: 750px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+
+}
+
+.modal__btn_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 // ================== MEDIA ====================================
 

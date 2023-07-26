@@ -6,6 +6,7 @@ import Registration from '../pages/Registration/Registration';
 import Profile from '../pages/Profile/Profile';
 import Seller from '../pages/Seller/Seller';
 import Advert from '../pages/Advert/Advert';
+import Reviews from '../pages/Reviews/Reviews';
 
 
 
@@ -18,6 +19,7 @@ function Routing() {
             <Route path="/profile" element={<Profile />} />
             <Route path='/ads/:id' element={<Advert />} />
             <Route path='/seller/:id' element={<Seller />} />
+            {/* <Route path='/ads/:id/comments' element={<Reviews />} /> */}
         </Routes>
     );
 }

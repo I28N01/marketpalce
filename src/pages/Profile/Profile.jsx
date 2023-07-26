@@ -1,7 +1,6 @@
 import styles from "./Profile.module.scss";
 import Header from "../../components/Header/Header"
 import UserProfile from "../../components/UserProfile/UserProfile";
-import Items from "../../components/Items/Items";
 import Menu from "../../components/UI/Menu/Menu";
 
 function Profile() {

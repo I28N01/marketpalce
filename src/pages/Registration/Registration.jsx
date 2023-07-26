@@ -1,28 +1,125 @@
+import React, { useState } from 'react';
 import Button from '../../components/UI/Button/Button';
 import styles from './Registration.module.scss';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Registration() {
-
     const navigate = useNavigate();
-    const handleSignUp = () => navigate('/profile');
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        name: '',
+        surname: '',
+        phone: '',
+        city: '',
+    });
+    const [successMessage, setSuccessMessage] = useState('');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    };
+
+    const handleButtonClick = () => {
+        navigate('/');
+    };
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
+
+        // Check if the password and repeatPassword fields match
+        if (formData.password !== formData.repeatPassword) {
+            console.error('Passwords do not match.');
+            return;
+        }
+
+        // Create an object with the registration data
+        const registrationData = {
+            email: formData.email,
+            password: formData.password,
+            name: formData.name,
+            surname: formData.surname,
+            phone: formData.phone,
+            city: formData.city,
+        };
+
+        // Send the registration data to the server
+        axios.post('http://127.0.0.1:8090/auth/register', registrationData)
+            .then((response) => {
+                console.log('Registration successful:', response.data);
+                setSuccessMessage('Registration successful! Redirecting to the login page...');
+                // Redirect the user to the login page after 1 second
+                setTimeout(() => {
+                    navigate('/login');
+                }, 1000);
+            })
+            .catch((error) => {
+                console.error('Error during registration:', error);
+                // Handle registration errors if needed
+            });
+    };
 
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSignUp}>
                     <img className={styles.logo} src="/assets/img/logo_modal.png" alt="logo" />
-                    <input className={styles.input} placeholder="Email" type="text" />
-                    <input className={styles.input} placeholder="Пароль" type="password" />
-                    <input className={styles.input} placeholder="Повторите пароль" type="password" />
-                    <input className={styles.input} placeholder="Имя (необязательно)" type="text" />
-                    <input className={styles.input} placeholder="Фамилия (необязательно)" type="text" />
-                    <input className={styles.input} placeholder="Город (необязательно)" type="text" />
-                    <div onClick={handleSignUp}><Button text="Зарегистрироваться" view="primary" /></div>
+                    <input
+                        className={styles.input}
+                        placeholder="Email"
+                        type="text"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
+                    <input
+                        className={styles.input}
+                        placeholder="Пароль"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                    <input
+                        className={styles.input}
+                        placeholder="Повторите пароль"
+                        type="password"
+                        name="repeatPassword"
+                        value={formData.repeatPassword}
+                        onChange={handleChange}
+                    />
+                    <input
+                        className={styles.input}
+                        placeholder="Имя (необязательно)"
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+                    <input
+                        className={styles.input}
+                        placeholder="Фамилия (необязательно)"
+                        type="text"
+                        name="surname"
+                        value={formData.surname}
+                        onChange={handleChange}
+                    />
+                    <input
+                        className={styles.input}
+                        placeholder="Город (необязательно)"
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                    />
+                    {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
+                    <Button text="Зарегистрироваться" view="primary" type="submit" />
+                    <div onClick={handleButtonClick}><Button text="На главную" view="tertiary" /></div>
                 </form>
             </div>
         </div>
     );
-};
+}
 
 export default Registration;

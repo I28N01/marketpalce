@@ -1,31 +1,40 @@
 import styles from "./SellerProfile.module.scss";
 import DateFormatter from "../UI/DateFormatter/DateFormatter";
-import { getAdData } from '../Redux/Actions/Actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import PhoneNumber from "../UI/PhoneNumber/PhoneNumber";
+import axios from "axios";
+import { useLocation } from 'react-router-dom';
 
 function SellerProfile() {
     const location = useLocation();
     const currentPath = location.pathname.split('/');
     const id = currentPath.pop() || currentPath.pop();
-    const dispatch = useDispatch();
-    const { adData, error } = useSelector((state) => state.ad);
+
+    const [adData, setAdData] = useState(null);
+    const [error, setError] = useState(null);
     const photoURL = 'http://127.0.0.1:8090/';
 
     useEffect(() => {
-        dispatch(getAdData(id));
-    }, [dispatch]);
+        fetchAdData();
+    }, []);
+
+    const fetchAdData = () => {
+        axios.get(`http://127.0.0.1:8090/ads/${id}`)
+            .then((response) => {
+                setAdData(response.data);
+            })
+            .catch((error) => {
+                setError(error.message);
+            });
+    };
 
     if (error) {
         return <div>Error: {error}</div>;
     }
 
     if (!adData) {
-        return;
+        return null;
     }
-
 
     return (
         <div>
