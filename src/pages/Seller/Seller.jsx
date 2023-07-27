@@ -14,21 +14,7 @@ function Seller() {
     const currentPath = location.pathname.split('/');
     const id = currentPath.pop() || currentPath.pop();
 
-    const [adsData, setAdsData] = useState([]);
-    useEffect(() => {
-        // Функция для выполнения GET-запроса
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`http://127.0.0.1:8090/ads?user_id=${id}`);
-                setAdsData(response.data);
-            } catch (error) {
-                console.error('Ошибка при выполнении GET-запроса:', error);
-            }
-        };
 
-        // Выполняем GET-запрос при монтировании компонента
-        fetchData();
-    }, []);
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
@@ -37,7 +23,7 @@ function Seller() {
                     <div className={styles.main__container}>
                         <Menu />
                         <SellerProfile />
-                        <Items data={adsData} searchTerm={''} />
+                        
                     </div >
                 </main >
             </div >
