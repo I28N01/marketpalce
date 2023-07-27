@@ -22,7 +22,7 @@ function Routing() {
             <Route path='/ads/:id' element={<Advert />} />
             <Route path='/seller/:id' element={<Seller />} />
             {/* <Route path='/ads/:id/comments' element={<Reviews />} /> */}
-            <Route path='/ArticleCreator' element={<ArticleCreator />} />
+            {/* <Route path='/ArticleCreator' element={<ArticleCreator />} /> */}
             <Route path='/ArticleEditor' element={<ArticleEditor />} />
         </Routes>
     );
