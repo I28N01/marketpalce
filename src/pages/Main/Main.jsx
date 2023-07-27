@@ -37,9 +37,7 @@ function Main() {
                     <div className={styles.main__container}>
                         <h2 className={styles.main__h2}>Объявления</h2>
                         <div className={styles.main__content}>
-
                             <Items data={adsData} searchTerm={searchTerm} />
-
                         </div>
                     </div>
                 </main>

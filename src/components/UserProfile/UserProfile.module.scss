@@ -142,6 +142,46 @@
     gap: 20px;
 }
 
+.input__wrapper {
+    width: 100%;
+    position: relative;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.input__file {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+
+.input__file_button_text {
+    line-height: 1;
+    margin-top: 1px;
+}
+
+.input__file_button {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: #009EE4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: center;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
 // ================== Медиа ====================================
 
 

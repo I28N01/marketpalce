@@ -13,6 +13,9 @@ export default function primary({ text, view, type }) {
         return (<button className={styles.tertiary} type={type}>{text}</button>);
     }
 
+    if (view === 'modal') {
+        return (<button className={styles.modal} type={type}>{text}</button>);
+    }
 
 
 }

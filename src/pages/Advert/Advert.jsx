@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header"
 import Menu from "../../components/UI/Menu/Menu";
 import Article from "../../components/Article/Article";
 
-function Profile() {
+function Advert() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
@@ -19,4 +19,4 @@ function Profile() {
     )
 }
 
-export default Profile;
+export default Advert;

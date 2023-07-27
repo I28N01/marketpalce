@@ -7,6 +7,30 @@
         padding: 0 5px 70px;
     }
 
+    &__container {
+        max-width: 1178px;
+        margin: 0 auto;
+        padding: 0px 5px;
+    }
+
+    &__title {
+        margin-bottom: 32px;
+        padding: 0 5px;
+    }
+
+    &__text {
+        font-size: 16px;
+        line-height: 24px;
+        color: #000000;
+    }
+
+    &__content {
+        max-width: 792px;
+        width: 100%;
+        padding: 0 5px 117px;
+
+    }
+
 }
 
 .title {
@@ -16,7 +40,11 @@
     color: #000000;
 }
 
-// ================== adv ====================================
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
 
 .artic {
 
@@ -224,15 +252,38 @@
 @media screen and (max-width: 768px) {
 
     .main {
+        &__container {
+            padding: 0 20px 0;
+        }
+
+
         &__artic {
             max-width: 1178px;
             width: 100%;
             padding: 55px 0 0px;
             margin: 0 auto;
+
+
+        }
+
+        &__title {
+            margin-bottom: 14px;
+            padding: 0;
+        }
+
+        &__content {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 0 84px;
         }
 
     }
 
+    .title {
+        font-size: 18px;
+        line-height: 1;
+
+    }
 
     .artic {
 

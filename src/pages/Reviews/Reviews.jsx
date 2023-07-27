@@ -63,7 +63,8 @@ function Reviews({ adId, onClose, isLoggedIn }) {
                                 <form className={styles.modal__form_newArt} id="formNewArt" onSubmit={handleReviewSubmit}>
                                     <div className={styles.form_newArt__block}>
                                         <label htmlFor="text">Добавить отзыв</label>
-                                        <textarea className={styles.form_newArt__area} name="text" id="formArea" cols="auto" rows="5" placeholder="Введите описание" value={reviewText} onChange={(e) => setReviewText(e.target.value)}></textarea>
+                                        <textarea className={styles.form_newArt__area} name="text" id="formArea" cols="auto" rows="5" 
+                                        placeholder="Введите описание" value={reviewText} onChange={(e) => setReviewText(e.target.value)}></textarea>
                                     </div>
                                     <button className={styles.form_newArt__btn_pub}>Опубликовать</button>
                                 </form>

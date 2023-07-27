@@ -7,6 +7,8 @@ import Profile from '../pages/Profile/Profile';
 import Seller from '../pages/Seller/Seller';
 import Advert from '../pages/Advert/Advert';
 import Reviews from '../pages/Reviews/Reviews';
+import ArticleCreator from '../components/ArticleCreator/ArticleCreator';
+import ArticleEditor from '../components/ArticleEditor/ArticleEditor';
 
 
 
@@ -20,6 +22,8 @@ function Routing() {
             <Route path='/ads/:id' element={<Advert />} />
             <Route path='/seller/:id' element={<Seller />} />
             {/* <Route path='/ads/:id/comments' element={<Reviews />} /> */}
+            <Route path='/ArticleCreator' element={<ArticleCreator />} />
+            <Route path='/ArticleEditor' element={<ArticleEditor />} />
         </Routes>
     );
 }

@@ -2,9 +2,13 @@ import styles from "./Items.module.scss";
 import TimeFormatter from '../UI/TimeFormatter/TimeFormatter';
 
 function Items({ data, searchTerm }) {
-    const filteredData = data.filter((item) =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    let filteredData = data;
+
+    if (searchTerm !== undefined) {
+        filteredData = data.filter((item) =>
+            item.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }
 
     return (
         <div className={styles.cards}>
@@ -28,9 +32,9 @@ function Items({ data, searchTerm }) {
                 </div>
             ))}
         </div>
-
     );
 }
 
 export default Items;
+
 

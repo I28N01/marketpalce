@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import Button from '../UI/Button/Button';
 import styles from './UserProfile.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile() {
     const navigate = useNavigate();
@@ -12,19 +12,18 @@ function UserProfile() {
         surname: "",
         phone: "",
         city: "",
+        avatar: "",
     });
-    const accessToken = localStorage.getItem("access_token");
-    const handleButtonClick = () => {
-        localStorage.clear()
-        navigate('/');
-    };
+    const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
+    const [image, setImage] = useState(null);
+
     useEffect(() => {
         // Fetch the user data from the server on component mount
         fetchUser();
     }, []);
 
     const fetchUser = () => {
-        axios.get('http://127.0.0.1:8090/user', {
+        axios.get('http://127.0.0.1:8090/user/', {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -41,7 +40,7 @@ function UserProfile() {
             .catch((error) => {
                 console.error('Ошибка при выполнении запроса на получение данных пользователя:', error);
                 localStorage.removeItem("access_token");
-                window.location.reload();
+                navigate('/login');
                 // Handle errors if needed
             });
     };
@@ -75,8 +74,37 @@ function UserProfile() {
             .catch((error) => {
                 console.error("Error:", error);
                 // Handle errors if needed
-
             });
+    };
+
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+            // Загружаем изображение на сервер, если выбран файл
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const response = await axios.post('http://127.0.0.1:8090/user/avatar', formData, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
+
+                console.log("Image uploaded:", response.data);
+            } catch (error) {
+                console.error("Error uploading image:", error);
+                // Обработка ошибок загрузки изображения, если необходимо
+            }
+        }
+    };
+
+    const handleButtonClick = () => {
+        localStorage.clear();
+        setAccessToken(null);
+        navigate('/');
     };
 
     if (!user) {
@@ -92,13 +120,15 @@ function UserProfile() {
                     <div className={styles.profile__settings}>
                         <div className={styles.settings__left}>
                             <div className={styles.settings__img}>
-                                <a href="" target="_self">
-                                    <img src={`http://127.0.0.1:8090/${formData.avatar}`} alt="" />
-                                </a>
+                                <img src={`http://127.0.0.1:8090/${user.avatar}`} alt="avatar" />
                             </div>
-                            <a className={styles.settings__change_photo} href="" target="_self">
-                                Заменить
-                            </a>
+
+                            <div className={styles.input__wrapper}>
+                                <input name="file" type="file" id="input__file" className={`${styles.input} ${styles.input__file}`} onChange={handleImageUpload} />
+                                <label for="input__file" className={styles.input__file_button}>
+                                    <span className={styles.input__file_button_text}>Заменить</span>
+                                </label>
+                            </div>
                         </div>
                         <div className={styles.settings__right}>
                             <form className={styles.settings__form} onSubmit={handleSubmit}>

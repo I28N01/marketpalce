@@ -16,7 +16,7 @@ function Main() {
     function AuthenticatedMenu() {
         return (
             <nav className={styles.nav}>
-                <Link to="/login"><Button text="Разместить объявление" view="secondary" /></Link>
+                <Link to="/ArticleCreator"><Button text="Разместить объявление" view="secondary" /></Link>
                 <Link to="/profile"><Button text="Личный кабинет" view="secondary" /></Link>
             </nav>
         );

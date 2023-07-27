@@ -20,7 +20,9 @@ function Login() {
             const response = await axios.post('http://127.0.0.1:8090/auth/login', userData);
             const accessToken = response.data.access_token;
             localStorage.setItem('access_token', accessToken);
+            localStorage.setItem('email', email)
             console.log(accessToken)
+            console.log(localStorage.getItem('email'))
             navigate('/profile');
         } catch (error) {
             console.error('Ошибка при выполнении POST-запроса:', error);
