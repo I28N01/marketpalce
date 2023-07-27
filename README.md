@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+#Проект "Онлайн объявления" 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Добро пожаловать в проект "Онлайн объявления" - ваш персональный вариант платформы, подобной популярному сервису "Авито". Это приложение предоставляет возможность размещать объявления о продаже товаров, а также просматривать и редактировать размещенные объявления.
 
-## Available Scripts
 
-In the project directory, you can run:
+#Фронтенд
+В фронтенд-части проекта реализована визуальная часть веб-приложения. Она включает в себя верстку, шрифты и интерактивность для взаимодействия пользователя с платформой.
+Для запуска приложение используйте команду в терминале npm run start. Проект будет запущен по адресу http://localhost:3000
 
-### `npm start`
+#Бэкенд
+Бэкенд-часть предоставляет необходимые API и функциональность для обработки запросов от фронтенда. Бэкенд-часть расположена в папке /backend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Для запуска бэкенда вам потребуется установить Docker.
+2. Скачайте версию для своей операционной системы и запустите.
+3. Далее следуйте инструкциям установщика.
+4. После установки перезагрузите компьютер.
+5. Запустите Docker с помощью ярлыка.
+6. Через терминал перейдите в  папку backend.
+7. Запустите в терминале команду:docker-compose -f docker-compose-backend.yaml up -d
+8. После первого выполнения команды все образы подтянуться, но могут не запуститься, в этом случае повторно выполните команду:docker-compose -f docker-compose-backend.yaml up -d
+9. После этого бэкенд и Swagger будут доступны по адресу http://localhost:8090/
+10. Чтобы остановить работу бэкенда выполните:docker-compose down
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#Список экранов проекта
+##Главная страница
+На главной странице пользователь может просматривать товары, размещенные на платформе, а также осуществлять поиск по объявлениям с помощью строки поиска.
 
-### `npm test`
+##Авторизация и Регистрация
+Пользователь имеет возможность авторизоваться или зарегистрироваться на сайте, чтобы получить доступ к дополнительным функциям платформы.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##Личный кабинет
+В личном кабинете отображается информация о пользователе, такая как имя, фамилия, аватарка и телефон. Пользователь может редактировать свои данные, и кнопка "Сохранить" будет активирована при изменении хотя бы одного поля.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##Мои товары
+На странице профиля отображается список "Моих товаров", которые пользователь разместил на платформе. При клике на товар открывается карточка с информацией о товаре, включая цену, наименование, описание, телефон и имя продавца. Также предоставляются отзывы других пользователей о данном товаре.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##Разместить объявление
+При нажатии на кнопку "Разместить объявление" открывается модальное окно, где продавец может добавить информацию о товаре, включая цену, наименование, описание и картинку товара. В конце окна есть кнопка "Опубликовать", чтобы разместить объявление.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##Карточка товара
+После публикации объявления можно открыть карточку товара, где предоставляется возможность редактировать информацию о товаре, включая цену, наименование и описание.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Спасибо за выбор нашего проекта "Онлайн объявления"! Мы надеемся, что он будет полезен и удобен в использовании. Удачи в разработке!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#
