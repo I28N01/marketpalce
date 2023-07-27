@@ -4,6 +4,7 @@ import Search from "../../components/Search/Search";
 import Items from "../../components/Items/Items";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Footer from "../../components/Footer/Footer";
 
 function Main() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -42,6 +43,7 @@ function Main() {
                     </div>
                 </main>
             </div>
+            <Footer />
         </div>
     )
 }

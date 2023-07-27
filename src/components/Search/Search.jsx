@@ -11,7 +11,7 @@ const Search = ({ searchTerm, onSearchChange }) => {
     return (
 
         <div className={styles.search}>
-            <a className={styles.search__logo_link} href="#" target="_blank">
+            <a className={styles.search__logo_link} target="_blank">
                 <img className={styles.search__logo_img} src="assets/img/logo.png" alt="logo" />
             </a>
             <a className={styles.search__logo_mob_link} href="#" target="_blank">

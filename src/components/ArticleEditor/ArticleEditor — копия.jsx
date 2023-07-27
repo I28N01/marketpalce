@@ -1,13 +1,8 @@
+import styles from "./ArticleEditor.module.scss";
 import React, { useState } from 'react';
 import axios from 'axios';
-import { handleFileInputClick, handleImageChange } from '../UI/ImageUpload/ImageUpload';
-import styles from './ArticleEditor.module.scss';
 
 function ArticleEditor({ adData, onClose }) {
-    const accessToken = localStorage.getItem('access_token');
-    const [images, setImages] = useState([]);
-    const [imagePreviews, setImagePreviews] = useState([]);
-
     const [updatedData, setUpdatedData] = useState({
         title: adData.title,
         description: adData.description,
@@ -22,26 +17,9 @@ function ArticleEditor({ adData, onClose }) {
         }));
     };
 
-    const renderImageUpload = () => {
-        const imageUploadArray = Array.from({ length: 5 });
-        return imageUploadArray.map((_, index) => (
-            <div className={styles.form_newArt__img} onClick={handleFileInputClick(index)} key={index}>
-                <input
-                    className={styles.hidden}
-                    type="file"
-                    id={`fileInput${index}`}
-                    name={`files${index}`}
-                    accept="image/jpeg"
-                    onChange={(event) => handleImageChange(index, event, setImagePreviews, images, setImages, imagePreviews)}
-                />
-                {imagePreviews[index] && <img src={imagePreviews[index]} alt="Preview" className={styles.form_newArt__preview} />}
-                <div className={styles.form_newArt__img_cover}></div>
-            </div>
-        ));
-    }
-
     const handleSaveChanges = async () => {
         try {
+            const accessToken = localStorage.getItem('access_token');
             await axios.patch(`http://127.0.0.1:8090/ads/${adData.id}`, updatedData, {
                 headers: {
                     'accept': 'application/json',
@@ -49,34 +27,10 @@ function ArticleEditor({ adData, onClose }) {
                     'Content-Type': 'application/json',
                 },
             });
-            // Save changes and upload images
-            uploadImage();
+            // If the request is successful, close the editor modal
+            onClose();
         } catch (error) {
             console.error('Ошибка при сохранении изменений:', error);
-        }
-    };
-
-    const uploadImage = async () => {
-        if (images.length > 0) {
-            try {
-                for (let i = 0; i < images.length; i++) {
-                    const formData = new FormData();
-                    formData.append('file', images[i]);
-                    await axios.post(`http://127.0.0.1:8090/ads/${adData.id}/image`, formData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                            'Authorization': `Bearer ${accessToken}`,
-                        }
-                    });
-                }
-                // Images uploaded successfully
-                onClose(); // Close the editor modal after saving changes and uploading images
-            } catch (error) {
-                console.error('Ошибка при загрузке изображения:', error);
-            }
-        } else {
-            // No images to upload
-            onClose(); // Close the editor modal if there are no images to upload
         }
     };
 
@@ -116,7 +70,10 @@ function ArticleEditor({ adData, onClose }) {
                         <div className={styles.form_newArt__block}>
                             <p className={styles.form_newArt__p}>Фотографии товара<span>не более 5 фотографий</span></p>
                             <div className={styles.form_newArt__bar_img}>
-                                {renderImageUpload()}
+                                <div className={styles.form_newArt__img}>
+                                    <img src="" alt="" />
+                                    <div className={styles.form_newArt__img_cover}></div>
+                                </div>
                             </div>
                         </div>
                         <div className={`${styles.form_newArt__block} ${styles.block_price}`}>

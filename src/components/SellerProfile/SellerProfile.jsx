@@ -9,7 +9,7 @@ function SellerProfile() {
     const location = useLocation();
     const currentPath = location.pathname.split('/');
     const id = currentPath.pop() || currentPath.pop();
-
+    console.log(id)
     const [adData, setAdData] = useState(null);
     const [error, setError] = useState(null);
     const photoURL = 'http://127.0.0.1:8090/';
@@ -62,7 +62,12 @@ function SellerProfile() {
                                 </div>
                             </div>
 
-                            <PhoneNumber phoneNumber={adData.user.phone} />
+                            {adData.user.phone && adData.user.phone.length >= 6 ? (
+                                <PhoneNumber phoneNumber={adData.user.phone} />
+                            ) : (
+                                <p className={styles.invalid_phone}>Номер не указан</p>
+
+                            )}
                         </div>
                     </div>
                 </div>

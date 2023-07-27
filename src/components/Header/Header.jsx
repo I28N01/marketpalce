@@ -4,7 +4,7 @@ import ArticleCreator from "../ArticleCreator/ArticleCreator";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-function Main() {
+function Header() {
     const isUserLoggedIn = !!localStorage.getItem('access_token');
     const [showModal, setShowModal] = useState(false);
 
@@ -49,6 +49,6 @@ function Main() {
     )
 }
 
-export default Main;
+export default Header;
 
 

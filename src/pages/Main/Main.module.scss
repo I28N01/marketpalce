@@ -54,6 +54,11 @@
 
 
 @media screen and (max-width: 590px) {
+
+    body {
+        background-color: #fff;
+    }
+
     .main {
         &__container {
             padding: 85px 10px 84px;
@@ -68,7 +73,7 @@
             position: relative;
 
             &::before {
-                content: "";
+
                 display: block;
                 width: 12px;
                 height: 12px;

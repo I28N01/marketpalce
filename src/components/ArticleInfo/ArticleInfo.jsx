@@ -99,7 +99,7 @@ function ArticleInfo({ adData, handleShowReviews, id, baseUrl }) {
 
 
                         ) : (
-                            <a href={`/seller/${adData.user_id}`}>
+                            <a href={`/seller/${id}`}>
                                 <p className={styles.author__name}>{adData.user.name}</p>
                                 <p className={styles.author__about}>
                                     Продает товары с <DateFormatter dateStr={adData.created_on} />

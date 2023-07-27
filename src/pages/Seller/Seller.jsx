@@ -6,6 +6,7 @@ import Items from "../../components/Items/Items";
 import { useLocation } from 'react-router-dom';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
+import Footer from "../../components/Footer/Footer";
 
 
 function Seller() {
@@ -40,6 +41,7 @@ function Seller() {
                     </div >
                 </main >
             </div >
+            <Footer />
         </div >
     )
 }

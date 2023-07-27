@@ -5,6 +5,7 @@ import UserProfile from "../../components/UserProfile/UserProfile";
 import Items from "../../components/Items/Items";
 import Menu from "../../components/UI/Menu/Menu";
 import axios from 'axios';
+import Footer from "../../components/Footer/Footer";
 
 function Profile() {
     const [adsData, setAdsData] = useState([]);
@@ -49,6 +50,7 @@ function Profile() {
                     </div >
                 </main >
             </div >
+            <Footer />
         </div >
     )
 }

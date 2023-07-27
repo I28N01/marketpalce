@@ -16,6 +16,7 @@ function UserProfile() {
     });
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
     const [image, setImage] = useState(null);
+    const [profileUpdated, setProfileUpdated] = useState(false);
 
     useEffect(() => {
         // Fetch the user data from the server on component mount
@@ -36,6 +37,7 @@ function UserProfile() {
                     phone: response.data.phone,
                     city: response.data.city,
                 });
+
             })
             .catch((error) => {
                 console.error('Ошибка при выполнении запроса на получение данных пользователя:', error);
@@ -70,6 +72,9 @@ function UserProfile() {
             .then((response) => {
                 console.log("Response:", response.data);
                 // Handle the server response if needed
+                if (response.status === 200) {
+                    setProfileUpdated(true); // Set the state to true if profile is successfully updated
+                }
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -92,7 +97,7 @@ function UserProfile() {
                         'Content-Type': 'multipart/form-data',
                     }
                 });
-
+                window.location.reload();
                 console.log("Image uploaded:", response.data);
             } catch (error) {
                 console.error("Error uploading image:", error);
@@ -125,8 +130,9 @@ function UserProfile() {
 
                             <div className={styles.input__wrapper}>
                                 <input name="file" type="file" id="input__file" className={`${styles.input} ${styles.input__file}`} onChange={handleImageUpload} />
-                                <label for="input__file" className={styles.input__file_button}>
+                                <label htmlFor="input__file" className={styles.input__file_button}>
                                     <span className={styles.input__file_button_text}>Заменить</span>
+
                                 </label>
                             </div>
                         </div>
@@ -150,12 +156,14 @@ function UserProfile() {
                                 <div className={styles.settings__div}>
                                     <label htmlFor="phone">Телефон</label>
                                     <input className={styles.settings__phone} name="phone" type="tel" value={formData.phone} placeholder="+79161234567" onChange={handleChange} />
+                                    {profileUpdated && <div className={styles.text}>Профиль обновлен</div>}
                                 </div>
 
                                 <div className={styles.buttons}>
                                     <Button text="Сохранить" view="primary" type="submit" />
                                     <div onClick={handleButtonClick}><Button text="Выйти" view="tertiary" /></div>
                                 </div>
+
                             </form>
                         </div>
                     </div>

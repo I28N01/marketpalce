@@ -3,49 +3,30 @@ import axios from 'axios';
 import Button from '../UI/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import styles from './ArticleCreator.module.scss';
+import { handleFileInputClick, handleImageChange } from '../UI/ImageUpload/ImageUpload'
 
 function ArticleCreator({ onClose }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [image, setImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
+    const [images, setImages] = useState([]);
+    const [imagePreviews, setImagePreviews] = useState([]); // массив с превью для каждого изображения
     const accessToken = localStorage.getItem('access_token');
     const navigate = useNavigate();
 
-    const handleFileInputClick = () => { //скрытие дефолтного поля выбора изображения
-        const fileInput = document.getElementById('fileInput');
-        fileInput.click();
-    };
-
-    const handleImageChange = (e) => {
-        const selectedImage = e.target.files[0];
-        setImage(selectedImage);
-
-        if (selectedImage) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(selectedImage);
-        } else {
-            setImagePreview(null);
-        }
-    };
-
-    const renderImageUpload = () => { // Обновляем превью изображения
-        const imageUploadArray = Array.from({ length: 5 }); // Создаем массив с 5 элементами
-        return imageUploadArray.map((index) => (
-            <div className={styles.form_newArt__img} onClick={handleFileInputClick} key={index}>
+    const renderImageUpload = () => {
+        const imageUploadArray = Array.from({ length: 5 });
+        return imageUploadArray.map((_, index) => (
+            <div className={styles.form_newArt__img} onClick={handleFileInputClick(index)} key={index}>
                 <input
                     className={styles.hidden}
                     type="file"
-                    id="fileInput"
-                    name="files"
+                    id={`fileInput${index}`}
+                    name={`files${index}`}
                     accept="image/jpeg"
-                    onChange={handleImageChange} // Обновляем состояние изображения при выборе файла
+                    onChange={(event) => handleImageChange(index, event, setImagePreviews, images, setImages, imagePreviews)}
                 />
-                {imagePreview && <img src={imagePreview} alt="Preview" className={styles.form_newArt__preview} />} {/* Отображаем превью изображения */}
+                {imagePreviews[index] && <img src={imagePreviews[index]} alt="Preview" className={styles.form_newArt__preview} />}
                 <div className={styles.form_newArt__img_cover}></div>
             </div>
         ));
@@ -74,17 +55,20 @@ function ArticleCreator({ onClose }) {
     };
 
     const uploadImage = async (adId) => { // Отправка изображений для создания объявления
-        if (image) {
+        if (images.length > 0) { // Проверяем, что массив изображений не пустой
             try {
-                const formData = new FormData();
-                formData.append('file', image);
+                for (let i = 0; i < images.length; i++) {
+                    const formData = new FormData();
+                    formData.append('file', images[i]); // Отправляем каждое изображение отдельным запросом
 
-                await axios.post(`http://127.0.0.1:8090/ads/${adId}/image`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Authorization': `Bearer ${accessToken}`,
-                    }
-                });
+                    await axios.post(`http://127.0.0.1:8090/ads/${adId}/image`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'Authorization': `Bearer ${accessToken}`,
+                        }
+                    });
+                }
+
                 navigate(`/ads/${adId}`);
             } catch (error) {
                 console.error('Ошибка при загрузке изображения:', error);
