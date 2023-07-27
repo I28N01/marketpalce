@@ -1,4 +1,3 @@
-// ArticleCreator.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import Button from '../UI/Button/Button';
@@ -19,23 +18,22 @@ function ArticleCreator({ onClose }) {
         fileInput.click();
     };
 
+    const handleImageChange = (e) => {
+        const selectedImage = e.target.files[0];
+        setImage(selectedImage);
+
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(selectedImage);
+        } else {
+            setImagePreview(null);
+        }
+    };
 
     const renderImageUpload = () => { // Обновляем превью изображения
-        const handleImageChange = (e) => {
-            const selectedImage = e.target.files[0];
-            setImage(selectedImage);
-
-            if (selectedImage) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    setImagePreview(reader.result);
-                };
-                reader.readAsDataURL(selectedImage);
-            } else {
-                setImagePreview(null);
-            }
-        };
-
         const imageUploadArray = Array.from({ length: 5 }); // Создаем массив с 5 элементами
         return imageUploadArray.map((index) => (
             <div className={styles.form_newArt__img} onClick={handleFileInputClick} key={index}>
@@ -45,23 +43,19 @@ function ArticleCreator({ onClose }) {
                     id="fileInput"
                     name="files"
                     accept="image/jpeg"
-                    onChange={handleImageChange()} // Обновляем состояние изображения при выборе файла
+                    onChange={handleImageChange} // Обновляем состояние изображения при выборе файла
                 />
                 {imagePreview && <img src={imagePreview} alt="Preview" className={styles.form_newArt__preview} />} {/* Отображаем превью изображения */}
                 <div className={styles.form_newArt__img_cover}></div>
             </div>
-
         ));
     }
-
 
     const handleSubmit = async (e) => {  // Отправка текста для создания объявления
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://127.0.0.1:8090/ads?title=${title}&description=${description}&price=${price}`, {
-
-            }, {
+            const response = await axios.post(`http://127.0.0.1:8090/ads?title=${title}&description=${description}&price=${price}`, {}, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
                     'Content-Type': 'application/json',
@@ -92,7 +86,6 @@ function ArticleCreator({ onClose }) {
                     }
                 });
                 navigate(`/ads/${adId}`);
-
             } catch (error) {
                 console.error('Ошибка при загрузке изображения:', error);
                 navigate(`/ads/${adId}`);
@@ -101,8 +94,6 @@ function ArticleCreator({ onClose }) {
             navigate(`/ads/${adId}`);
         }
     };
-
-
 
     return (
         <div className={styles.wrapper}>
@@ -116,34 +107,37 @@ function ArticleCreator({ onClose }) {
                         <form className={styles.modal__form_newArt} onSubmit={handleSubmit}>
                             <div className={styles.form_newArt__block}>
                                 <label htmlFor="formName">Название</label>
-                                <input className={styles.form_newArt__input}
+                                <input
+                                    className={styles.form_newArt__input}
                                     type="text"
                                     id="formName"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    placeholder="Введите название" />
+                                    placeholder="Введите название"
+                                />
                             </div>
                             <div className={styles.form_newArt__block}>
                                 <label htmlFor="formArea">Описание</label>
-                                <textarea className={styles.form_newArt__area}
+                                <textarea
+                                    className={styles.form_newArt__area}
                                     id="formArea"
                                     cols="auto"
                                     rows="10"
                                     placeholder="Введите описание"
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
-                                >
-                                </textarea>
+                                />
                             </div>
                             <div className={styles.form_newArt__block}>
                                 <p className={styles.form_newArt__p}>Фотографии товара<span>не более 5 фотографий</span></p>
-                                <div className={styles.form_newArt__bar_img} >
+                                <div className={styles.form_newArt__bar_img}>
                                     {renderImageUpload()}
                                 </div>
                             </div>
                             <div className={`${styles.form_newArt__block} ${styles.block_price}`}>
                                 <label htmlFor="formPrice">Цена</label>
-                                <input className={styles.form_newArt__input_price}
+                                <input
+                                    className={styles.form_newArt__input_price}
                                     type="text"
                                     id="formPrice"
                                     value={price}
