@@ -28,13 +28,13 @@ function Registration() {
     const handleSignUp = (e) => {
         e.preventDefault();
 
-        // Check if the password and repeatPassword fields match
+        // проверяем что оба веденные пароли совпадают
         if (formData.password !== formData.repeatPassword) {
             console.error('Passwords do not match.');
             return;
         }
 
-        // Create an object with the registration data
+        // Создаем объект для отправки на сервер
         const registrationData = {
             email: formData.email,
             password: formData.password,
@@ -44,19 +44,18 @@ function Registration() {
             city: formData.city,
         };
 
-        // Send the registration data to the server
+        // Отправка данных на сервер
         axios.post('http://127.0.0.1:8090/auth/register', registrationData)
             .then((response) => {
                 console.log('Registration successful:', response.data);
                 setSuccessMessage('Registration successful! Redirecting to the login page...');
-                // Redirect the user to the login page after 1 second
+                // Редайрект на страницу входа
                 setTimeout(() => {
                     navigate('/login');
                 }, 1000);
             })
             .catch((error) => {
                 console.error('Error during registration:', error);
-                // Handle registration errors if needed
             });
     };
 

@@ -34,7 +34,7 @@ function Login() {
         <div className={styles.container}>
             <div className={styles.wrapper}>
                 <form className={styles.form} onSubmit={handleLogin}>
-                    <img className={styles.logo} src="/assets/img/logo_modal.png" alt="logo" />
+                    <Link to="/"><img className={styles.logo} src="/assets/img/logo_modal.png" alt="logo" /></Link>
                     <input className={styles.input} placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <input className={styles.input} placeholder="Пароль" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
                     />
