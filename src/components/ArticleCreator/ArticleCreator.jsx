@@ -47,7 +47,7 @@ function ArticleCreator({ onClose }) {
             const newAdId = response.data.id;
 
             // Перенаправляем пользователя на страницу с полученным ID
-            uploadImage(newAdId); // Call the function to upload the image with the newAdId
+            uploadImage(newAdId); 
         } catch (error) {
             console.error('Ошибка при отправке:', error);
             navigate(`/login`);

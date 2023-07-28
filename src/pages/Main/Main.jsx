@@ -10,8 +10,9 @@ function Main() {
     const [searchTerm, setSearchTerm] = useState('');
     const [adsData, setAdsData] = useState([]);
 
+
+//делаем запрос для получения списка всех объявлений
     useEffect(() => {
-        // Функция для выполнения GET-запроса
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://127.0.0.1:8090/ads');
@@ -20,8 +21,6 @@ function Main() {
                 console.error('Ошибка при выполнении GET-запроса:', error);
             }
         };
-
-        // Выполняем GET-запрос при монтировании компонента
         fetchData();
     }, []);
 

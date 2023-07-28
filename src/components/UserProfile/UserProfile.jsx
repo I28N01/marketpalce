@@ -19,11 +19,10 @@ function UserProfile() {
     const [profileUpdated, setProfileUpdated] = useState(false);
 
     useEffect(() => {
-        // Fetch the user data from the server on component mount
         fetchUser();
     }, []);
 
-    const fetchUser = () => {
+    const fetchUser = () => { //получаем данные пользователя
         axios.get('http://127.0.0.1:8090/user/', {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -43,7 +42,6 @@ function UserProfile() {
                 console.error('Ошибка при выполнении запроса на получение данных пользователя:', error);
                 localStorage.removeItem("access_token");
                 navigate('/login');
-                // Handle errors if needed
             });
     };
 
@@ -52,10 +50,8 @@ function UserProfile() {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e) => { //обновляем данные пользователя
         e.preventDefault();
-
-        // Parameters for the PATCH request
         const config = {
             method: "PATCH",
             url: "http://127.0.0.1:8090/user",
@@ -67,22 +63,20 @@ function UserProfile() {
             data: formData,
         };
 
-        // Execute the PATCH request to update user data
         axios(config)
             .then((response) => {
                 console.log("Response:", response.data);
-                // Handle the server response if needed
+
                 if (response.status === 200) {
-                    setProfileUpdated(true); // Set the state to true if profile is successfully updated
+                    setProfileUpdated(true);
                 }
             })
             .catch((error) => {
                 console.error("Error:", error);
-                // Handle errors if needed
             });
     };
 
-    const handleImageUpload = async (e) => {
+    const handleImageUpload = async (e) => { // Обновление аватара
         const file = e.target.files[0];
         if (file) {
             setImage(file);
@@ -113,7 +107,7 @@ function UserProfile() {
     };
 
     if (!user) {
-        return null; // You can return a loading indicator or any other content when user data is not available yet
+        return null;
     }
 
     return (

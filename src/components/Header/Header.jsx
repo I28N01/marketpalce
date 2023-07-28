@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function Header() {
-    const isUserLoggedIn = !!localStorage.getItem('access_token');
+    const isUserLoggedIn = !!localStorage.getItem('access_token'); //проверка регистрации пользователя
     const [showModal, setShowModal] = useState(false);
 
     function GuestMenu() {
@@ -44,7 +44,7 @@ function Header() {
 
     return (
         <div className={styles.header}>
-            {isUserLoggedIn ? <AuthenticatedMenu /> : <GuestMenu />}
+            {isUserLoggedIn ? <AuthenticatedMenu /> : <GuestMenu />} 
         </div>
     )
 }

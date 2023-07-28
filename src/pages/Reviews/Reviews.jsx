@@ -11,7 +11,7 @@ function Reviews({ adId, onClose, isLoggedIn }) {
         fetchReviews();
     }, []);
 
-    const fetchReviews = async () => {
+    const fetchReviews = async () => { //получение отзывов
         try {
             const response = await axios.get(`http://127.0.0.1:8090/ads/${adId}/comments`, {
                 headers: {
@@ -24,7 +24,7 @@ function Reviews({ adId, onClose, isLoggedIn }) {
         }
     };
 
-    const handleReviewSubmit = async (e) => {
+    const handleReviewSubmit = async (e) => { // Отправка отзыва
         e.preventDefault();
         if (!reviewText) return;
 
@@ -63,8 +63,8 @@ function Reviews({ adId, onClose, isLoggedIn }) {
                                 <form className={styles.modal__form_newArt} id="formNewArt" onSubmit={handleReviewSubmit}>
                                     <div className={styles.form_newArt__block}>
                                         <label htmlFor="text">Добавить отзыв</label>
-                                        <textarea className={styles.form_newArt__area} name="text" id="formArea" cols="auto" rows="5" 
-                                        placeholder="Введите описание" value={reviewText} onChange={(e) => setReviewText(e.target.value)}></textarea>
+                                        <textarea className={styles.form_newArt__area} name="text" id="formArea" cols="auto" rows="5"
+                                            placeholder="Введите описание" value={reviewText} onChange={(e) => setReviewText(e.target.value)}></textarea>
                                     </div>
                                     <button className={styles.form_newArt__btn_pub}>Опубликовать</button>
                                 </form>

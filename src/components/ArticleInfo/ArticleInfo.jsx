@@ -13,6 +13,7 @@ import ArticleEditor from "../ArticleEditor/ArticleEditor";
 function ArticleInfo({ adData, handleShowReviews, id, baseUrl }) {
     const loggedInUserEmail = localStorage.getItem('email');
     const navigate = useNavigate();
+
     //** Редактирование объявления */
     const [showEditor, setShowEditor] = useState(false);
     const handleShowEditor = () => {
@@ -21,9 +22,9 @@ function ArticleInfo({ adData, handleShowReviews, id, baseUrl }) {
     const handleCloseEditor = () => {
         setShowEditor(false);// Скрываем окно с редактированием
     };
-    //** Конец Редактирование объявления */
 
-    // "Снять с публикации" 
+
+    /** Снять с публикации объявление  */
     const handleRemoveFromPublication = () => {
         const accessToken = localStorage.getItem('access_token');
         axios.delete(`http://127.0.0.1:8090/ads/${id}`, {

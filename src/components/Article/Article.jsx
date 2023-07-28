@@ -21,7 +21,7 @@ function Article() {
         fetchAdData();
     }, []);
 
-    const fetchAdData = () => {
+    const fetchAdData = () => { //запрос на получение данных объявления
         axios.get(`http://127.0.0.1:8090/ads/${id}`)
             .then((response) => {
                 setAdData(response.data);
@@ -31,7 +31,7 @@ function Article() {
             });
     };
 
-    //** Отзывы */
+
     const handleShowReviews = () => {
         setShowReviews(true); // Показываем окно с отзывами
     };
@@ -40,13 +40,11 @@ function Article() {
         setShowReviews(false); // Скрываем окно с отзывами
     };
 
-    //** Конец Отзывы */
-
     if (error) {
         return <div>Error: {error}</div>;
     }
 
-    // Добавьте проверку на наличие данных перед их использованием
+    // Проверка на наличие данных перед их использованием
     if (!adData) {
         return null;
     }

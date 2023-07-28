@@ -4,7 +4,7 @@ import TimeFormatter from '../UI/TimeFormatter/TimeFormatter';
 function Items({ data, searchTerm }) {
     let filteredData = data;
 
-    if (searchTerm !== undefined) {
+    if (searchTerm !== undefined) { // производим поиск по объявлениям
         filteredData = data.filter((item) =>
             item.title.toLowerCase().includes(searchTerm.toLowerCase())
         );

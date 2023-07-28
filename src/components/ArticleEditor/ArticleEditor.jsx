@@ -49,7 +49,6 @@ function ArticleEditor({ adData, onClose }) {
                     'Content-Type': 'application/json',
                 },
             });
-            // Save changes and upload images
             uploadImage();
         } catch (error) {
             console.error('Ошибка при сохранении изменений:', error);
@@ -69,14 +68,12 @@ function ArticleEditor({ adData, onClose }) {
                         }
                     });
                 }
-                // Images uploaded successfully
-                onClose(); // Close the editor modal after saving changes and uploading images
+                onClose();
             } catch (error) {
                 console.error('Ошибка при загрузке изображения:', error);
             }
         } else {
-            // No images to upload
-            onClose(); // Close the editor modal if there are no images to upload
+            onClose();
         }
     };
 
